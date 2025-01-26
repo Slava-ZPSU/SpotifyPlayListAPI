@@ -3,7 +3,9 @@ const Spotify = {};
 let ACCESS_TOKEN;
 
 const CLIENT_ID = "d634d060b82d4318948d93b06ddc2d5a";
-const REDIRECT_URI = "http://spoticcourseapi.surge.sh/";
+//const REDIRECT_URI = "http://spoticcourseapi.surge.sh/";
+
+const REDIRECT_URI = "http://localhost:3000/";
 
 Spotify.getAccessToken = function () {
   if (ACCESS_TOKEN) {

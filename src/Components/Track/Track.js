@@ -1,52 +1,40 @@
-import React, { Component } from "react";
+import React from "react";
 import "./Track.css";
 
-class Track extends Component
-{
-    constructor(props){
-        super(props);
-
-        this.addTrack = this.addTrack.bind(this);
-        this.removeTrack = this.removeTrack.bind(this);
-        this.getButtonAction = this.getButtonAction.bind(this);
+const Track = ({track, onAdd, onRemove, isRemoval}) => {
+    const add = () => {
+        onAdd(track);
     }
 
-    render() {
-        return (
-            <div className="Track">
-                <div className="Track-information">
-                    <h3> { this.props.track.name } </h3>
-                    <p> { this.props.track.artist } | { this.props.track.album } </p>
-                </div>
-                {this.getButtonAction}
-            </div>
-        );
+    const remove = () => {
+        onRemove(track);
     }
 
-    getButtonAction() {
+    const getButtonAction = () => {
         let content = "";
         let action = null;
 
-        if (this.props.isRemoval) {
-            action = this.removeTrack;
+        if (isRemoval) {
             content = "-";
+            action = remove;
         } else {
-            action = this.addTrack;
-            content = "+"
+            content = "+";
+            action = add;
         }
 
-        return (
-            <button className="Track-action" onClick={action}>{content}</button>
-        );
+        return (<button className={"Track-action"} onClick={action}>{content}</button>);
     }
 
-    addTrack() {
-        this.props.onAdd(this.props.track);
-    }
+    return (
+        <div className="Track">
+            <div className="Track-information">
+                <h3> { track.name } </h3>
+                <p> { track.artist } | { track.album } </p>
+            </div>
 
-    removeTrack() {
-        this.props.onRemove(this.props.track);
-    }
-}
+            {getButtonAction()}
+        </div>
+    );
+};
 
 export default Track;
