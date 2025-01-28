@@ -13,9 +13,15 @@ const SearchBar = ({onSearch}) => {
         setTerm(newTerm);
     }
 
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            search();
+        }
+    };
+
     return (
         <div className="SearchBar">
-            <input placeholder="Enter A Song, or Artist" onChange={handleTermChange}/>
+            <input placeholder="Enter A Song, or Artist" onChange={handleTermChange} onKeyDown={handleKeyPress} />
             <button className="SearchButton" onClick={search}>SEARCH</button>
         </div>
     );
